@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+uuid = "==1.30"
+python-dotenv = "==1.0.0"
+fastapi = "==0.112.2"
+uvicorn = "==0.30.6"
+fastapi-controllers = "==0.3.0"
+PyJWT = "==2.9.0"
+cryptography = "==43.0.0"
+SQLAlchemy = "==2.0.32"
+psycopg2-binary = "==2.9.9"
+alembic = "==1.13.2"
+jinja2 = "==3.1.4"
+langchain = "==0.3.17"
+langgraph = "==0.2.69"
+langchain-community = "==0.3.16"
+langchain-ollama = "==0.2.3"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
