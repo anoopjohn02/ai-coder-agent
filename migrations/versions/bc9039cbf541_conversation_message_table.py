@@ -27,7 +27,7 @@ def upgrade() -> None:
             "role" varchar NOT NULL,
             "content" text NOT NULL,
             created_on timestamp NOT NULL,
-            CONSTRAINT conversation_messages_fk FOREIGN KEY (conversation_id) REFERENCES ai_assistant.conversation_history(id) ON DELETE CASCADE
+            CONSTRAINT conversation_messages_fk FOREIGN KEY (conversation_id) REFERENCES ai_coder_agent.conversation_history(id) ON DELETE CASCADE
         );
         """
     ))
