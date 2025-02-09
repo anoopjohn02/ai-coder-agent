@@ -12,9 +12,9 @@ class Request(BaseModel):
     question: str
     new_chat: bool
 
+
 class Response(BaseModel):
     """
     Chat response
     """
     text: str
-

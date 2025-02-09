@@ -1,0 +1,5 @@
+GENERATE = "generate"
+REVIEW = "review"
+OTHERS = "others"
+HISTORY = "history"
+REFINE = "refine"

@@ -9,6 +9,7 @@ from app.config import Db as db
 engine = create_engine(db.connUrl, echo=False)
 Session = sessionmaker(bind=engine)
 
+
 def check_db():
     """
     Method to check db connection

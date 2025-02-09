@@ -14,6 +14,7 @@ class TokenUser(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
 
+
 class User(BaseModel):
     """
     User Dto
@@ -23,6 +24,7 @@ class User(BaseModel):
     email: Optional[str] = None
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+
 
 class LoggedInUser(BaseModel):
     """

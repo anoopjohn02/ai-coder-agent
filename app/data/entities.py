@@ -3,18 +3,18 @@ Entity module
 """
 import uuid
 from datetime import datetime
-from typing import List
 
 from langchain.schema.messages import AIMessage, HumanMessage, SystemMessage
 from sqlalchemy import DateTime, MetaData, Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 
 from app.config import Db as dbConfig
 
-Base = declarative_base(metadata=MetaData(schema = dbConfig.schema))
+Base = declarative_base(metadata=MetaData(schema=dbConfig.schema))
+
 
 class ConversationHistory(Base):
     """
@@ -29,6 +29,7 @@ class ConversationHistory(Base):
     deleted: Mapped[bool] = mapped_column(Boolean)
     user_id: Mapped[uuid.UUID]
     created_on = Column(DateTime, default=datetime.utcnow)
+
 
 class ConversationMessage(Base):
     """

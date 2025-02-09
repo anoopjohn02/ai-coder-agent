@@ -1,9 +1,8 @@
-
 """
 Repository module
 """
 
-from sqlalchemy import select, update
+from sqlalchemy import select
 
 from .entities import (ConversationHistory,
                        ConversationMessage)
@@ -14,7 +13,8 @@ class ConversationRepo:
     """
     Conversation Repo
     """
-    def save_conversation(self, conversation : ConversationHistory):
+
+    def save_conversation(self, conversation: ConversationHistory):
         """
         Method to save conversations
         """
@@ -39,17 +39,20 @@ class ConversationRepo:
                                                      ConversationHistory.deleted == False)
             return session.scalars(stmt).all()
 
+
 class ConversationMessageRepo:
     """
     Conversation Message Repo
     """
-    def save_message(self, message : ConversationMessage):
+
+    def save_message(self, message: ConversationMessage):
         """
         Method to save a message
         """
         with Session() as session:
             session.add(message)
             session.commit()
+
     def get_conversation_messages(self, conv_id):
         """
         Method to fetch messages related to given conversation
@@ -57,6 +60,7 @@ class ConversationMessageRepo:
         with Session() as session:
             stmt = select(ConversationMessage).where(ConversationMessage.conversation_id == conv_id)
             return session.scalars(stmt).all()
+
     def get_txn_messages(self, txn_id):
         """
         Method to fetch messages related to given conversation
@@ -64,10 +68,12 @@ class ConversationMessageRepo:
         with Session() as session:
             stmt = select(ConversationMessage).where(ConversationMessage.transaction_id == txn_id)
             return session.scalars(stmt).all()
+
     def get_n_conversation_messages(self, n, conv_id):
         """
         Method to fetch last N messages related to given conversation
         """
         with Session() as session:
-            stmt = select(ConversationMessage).where(ConversationMessage.conversation_id == conv_id).order_by(ConversationMessage.created_on.desc()).limit(n)
+            stmt = select(ConversationMessage).where(ConversationMessage.conversation_id == conv_id).order_by(
+                ConversationMessage.created_on.desc()).limit(n)
             return session.scalars(stmt).all()
