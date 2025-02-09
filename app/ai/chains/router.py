@@ -5,7 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplat
 from langchain_core.pydantic_v1 import BaseModel, Field
 
 from app.ai.graph.state import GraphState
-from app.ai.llms import default_llm
+from app.ai.llms import openai_llm
 
 
 class RouteQuery(BaseModel):
@@ -18,13 +18,17 @@ class RouteQuery(BaseModel):
 
 
 def build_llm_router(state: GraphState):
-    llm = default_llm(state, False)
+    llm = openai_llm(state, False)
     structured_llm_router = llm.with_structured_output(RouteQuery)
-    system = """You are an expert at routing a user question to a generate or review code.
-    Read the question and identify the user ask to generate the code review the given code.
-    When review the code the code snippet must given.
-    If nothing is matching check chat history and find route.
-    If chat history is empty or can't find anything use others.
+    system = """
+    You are an expert in routing user requests into one of three categories: 'generate', 'review', or 'others'.
+
+    Analyze the user’s input to determine whether they are asking to generate new code or review existing code.
+    If the request is for a code review, ensure that a code snippet is provided; otherwise, classify it as others.
+    If the request is unclear, check the chat history for context.
+    If no relevant context is found in the chat history or if the request does not match 'generate' or 'review,' classify it as 'others'.
+    
+    Return the classification as a string from: Literal["generate", "review", "others"].
     """
 
     route_prompt = ChatPromptTemplate(

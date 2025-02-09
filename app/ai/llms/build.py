@@ -4,6 +4,7 @@ LLM Build Module
 
 from app.config import OllamaConfig as config
 from .ollama import build_ollama_llm
+from .openai import build_openai_llm
 from ..graph.state import GraphState
 
 
@@ -21,3 +22,10 @@ def default_llm(state: GraphState, streaming: bool):
     """
     handlers = []
     return build_ollama_llm(config.DEFAULT_MODEL_NAME, streaming, handlers)
+
+def openai_llm(state: GraphState, streaming: bool):
+    """
+    Build LLM for Router
+    """
+    handlers = []
+    return build_openai_llm(streaming, handlers)

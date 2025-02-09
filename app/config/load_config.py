@@ -33,3 +33,9 @@ class OllamaConfig:
     """
     DEFAULT_MODEL_NAME = os.getenv('DEFAULT_MODEL_NAME')
     CODER_MODEL_NAME = os.getenv('CODER_MODEL_NAME')
+
+class OpenaiConfig:
+    """
+    Store OpenAI specific configurations
+    """
+    MODEL_NAME = os.getenv('OPEN_AI_MODEL')
