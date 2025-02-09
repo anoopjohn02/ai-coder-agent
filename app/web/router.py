@@ -9,10 +9,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi_controllers import Controller, get
 
 from app.web.controller import TestController
+from app.config import App
 
 api = FastAPI()
-api.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+api.mount("/static", StaticFiles(directory=App.static_path + "/static"), name="static")
+templates = Jinja2Templates(directory=App.static_path + "/templates")
 
 
 def start():
@@ -21,7 +22,7 @@ def start():
     """
     api.include_router(TestController.create_router())
     api.include_router(UIController.create_router())
-    uvicorn.run(api, host="0.0.0.0", port=8081)
+    uvicorn.run(api, host="0.0.0.0", port=App.PORT)
 
 
 class UIController(Controller):

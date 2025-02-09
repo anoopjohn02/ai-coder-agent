@@ -16,6 +16,7 @@ class App:
     Store app specific configurations
     """
     PORT = 8080
+    static_path = os.getenv('STATIC_FILE_PATH')
 
 
 class Db:

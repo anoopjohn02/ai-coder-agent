@@ -1,4 +1,4 @@
 """
 Config package
 """
-from .templates import CUSTOM_PROMPT_TEMPLATE, CUSTOM_PROMPT
+from .load_config import Db, App, OllamaConfig

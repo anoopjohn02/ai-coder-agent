@@ -27,7 +27,8 @@ def upgrade() -> None:
             memory varchar NULL,
             llm varchar NULL,
             created_on timestamp NOT NULL,
-            user_id uuid NOT NULL
+            user_id uuid NOT NULL,
+            deleted boolean default false
         );
         """
     ))
