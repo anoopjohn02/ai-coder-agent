@@ -24,7 +24,6 @@ prompt = ChatPromptTemplate(
 def refine_question_node(state: GraphState) -> Dict[str, Any]:
     question = state["question"]
     conversation_id = state["conversation_id"]
-    logging.info("Re-factoring question for vector db")
     last_messages = get_last_messages_by_count(conversation_id, 3)
     if len(last_messages) == 0:
         return {"refined_question": question}
@@ -32,4 +31,5 @@ def refine_question_node(state: GraphState) -> Dict[str, Any]:
     llm = default_llm(state, False)
     chain = prompt | llm | StrOutputParser()
     response = chain.invoke({"question": question, "chat_history": last_messages})
+    logging.info("Re-factoring question to {}", response)
     return {"refined_question": response}

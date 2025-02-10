@@ -44,7 +44,7 @@ async def review_output_node(state: GraphState) -> Dict[str, Any]:
 
     llm = build_coder_llm(state, True)
     chain = prompt | llm | StrOutputParser()
-    answer = await chain.ainvoke({"question": question, "chat_history": [conversations]})
+    answer = await chain.ainvoke({"question": question, "chat_history": conversations})
 
     messages = [HumanMessage(content=state["question"]), AIMessage(content=answer)]
     return {"answer": answer, "messages": messages}

@@ -3,6 +3,7 @@ from typing import Literal
 from langchain_core.messages import SystemMessage
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
 from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_core.output_parsers import PydanticOutputParser
 
 from app.ai.graph.state import GraphState
 from app.ai.llms import openai_llm

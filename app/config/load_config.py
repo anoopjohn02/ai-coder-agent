@@ -2,10 +2,12 @@
 load config module
 """
 import os
+import logging
 
 from dotenv import load_dotenv
 
 load_dotenv()
+logging.basicConfig(level=logging.INFO)
 
 PDF_DIRECTORY = 'docs'
 METADATA_FILE = 'document_metadata.json'

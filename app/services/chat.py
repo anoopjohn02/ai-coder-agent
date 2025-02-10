@@ -2,13 +2,14 @@
 Chat service module
 """
 import uuid
+import logging
 
 from langchain_core.messages import HumanMessage
 
 from app.models.chat import Request
 from app.models.user import LoggedInUser
 from .conversation import get_default_user_conversation, create_new_user_conversation
-from ..ai.graph.consts import GENERATE
+from ..ai.graph.consts import GENERATE, REVIEW
 from ..ai.graph.graph import graph
 
 
@@ -27,6 +28,8 @@ async def aanswer(request: Request, user: LoggedInUser):
         "transaction_id": uuid.uuid1()
     }
     async for msg, metadata in graph.astream(inputs, stream_mode="messages"):
-        if (msg.content and msg.id.startswith("run-") and
-                not isinstance(msg, HumanMessage) and metadata["langgraph_node"] == GENERATE):
+        logging.info(msg)
+        if (msg.content and msg.id.startswith("run-")
+                and not isinstance(msg, HumanMessage)
+                and (metadata["langgraph_node"] == GENERATE or metadata["langgraph_node"] == REVIEW)):
             yield msg.content.replace('\n', '<br>')

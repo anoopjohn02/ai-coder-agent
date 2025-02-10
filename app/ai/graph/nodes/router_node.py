@@ -10,7 +10,7 @@ def route_question_node(state: GraphState) -> str:
     conversation_id = state["conversation_id"]
     conversations = get_messages_by_conversation_id(conversation_id)
     router = build_llm_router(state)
-    source: RouteQuery = router.invoke({"question": question, "chat_history": [conversations]})
+    source: RouteQuery = router.invoke({"question": question, "chat_history": conversations})
     if source.datasource == "generate":
         print("---ROUTE QUESTION TO GENERATE---")
         return GENERATE
