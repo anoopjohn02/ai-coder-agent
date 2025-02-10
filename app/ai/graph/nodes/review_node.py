@@ -30,7 +30,6 @@ Provide actionable suggestions for improvement along with code snippets where ne
 prompt = ChatPromptTemplate(
     messages=[
         SystemMessage(content=REVIEW_PROMPT),
-        MessagesPlaceholder(variable_name="context"),
         MessagesPlaceholder(variable_name="chat_history"),
         HumanMessagePromptTemplate.from_template("{question}")
     ]

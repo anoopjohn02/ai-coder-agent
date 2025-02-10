@@ -39,6 +39,9 @@ function appendMessage(name, img, side, text) {
 
   msgerChat.insertAdjacentHTML("beforeend", msgHTML);
   msgerChat.scrollTop += 500;
+  document.querySelectorAll("pre code").forEach((block) => {
+    hljs.highlightElement(block);
+  });
   return messageId;
 }
 
@@ -85,6 +88,7 @@ async function processStreamingResponse(url, messageId, chatMessage) {
   }
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
+  let codeStart = false;
   while (true) {
     const { value, done } = await reader.read();
     if (done) {
