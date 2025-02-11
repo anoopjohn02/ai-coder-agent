@@ -88,7 +88,7 @@ async function processStreamingResponse(url, messageId, chatMessage) {
   }
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
-  let codeStart = false;
+
   while (true) {
     const { value, done } = await reader.read();
     if (done) {
@@ -97,6 +97,7 @@ async function processStreamingResponse(url, messageId, chatMessage) {
     const chunk = decoder.decode(value);
     console.log(chunk);
     // Process the chunk of streaming data
+    //let newHTML = marked.parse(chunk);
     var textElement = document.getElementById(messageId);
     textElement.innerHTML += chunk;
   }

@@ -3,6 +3,7 @@ Chat service module
 """
 import uuid
 import logging
+import markdown
 
 from langchain_core.messages import HumanMessage
 
@@ -32,4 +33,4 @@ async def aanswer(request: Request, user: LoggedInUser):
         if (msg.content and msg.id.startswith("run-")
                 and not isinstance(msg, HumanMessage)
                 and (metadata["langgraph_node"] == GENERATE or metadata["langgraph_node"] == REVIEW)):
-            yield msg.content.replace('\n', '<br>')
+            yield msg.content

@@ -23,7 +23,7 @@ Provide structured feedback covering the following aspects:
 6. Best Practices: Suggest improvements based on industry standards and conventions.
 7. Documentation & Naming: Evaluate clarity in variable names, function names, and inline documentation.
 
-Provide actionable suggestions for improvement along with code snippets where necessary. Be clear, concise, and constructive in your feedback. 
+Provide actionable suggestions for improvement along with code snippets where necessary. Output Format must use html syntax for better readability. Be clear, concise, and constructive in your feedback. 
 
 """
 
