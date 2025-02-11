@@ -32,16 +32,14 @@ function appendMessage(name, img, side, text) {
           <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
 
-        <div class="msg-text" id="${messageId}">${text}</div>
+        <div class="msg-text" id="${messageId}">${marked.parse(text)}</div>
       </div>
     </div>
   `;
 
   msgerChat.insertAdjacentHTML("beforeend", msgHTML);
   msgerChat.scrollTop += 500;
-  document.querySelectorAll("pre code").forEach((block) => {
-    hljs.highlightElement(block);
-  });
+
   return messageId;
 }
 
@@ -97,8 +95,9 @@ async function processStreamingResponse(url, messageId, chatMessage) {
     const chunk = decoder.decode(value);
     console.log(chunk);
     // Process the chunk of streaming data
-    //let newHTML = marked.parse(chunk);
     var textElement = document.getElementById(messageId);
-    textElement.innerHTML += chunk;
+    textElement.innerHTML += chunk.replace("<br>", "\n");
   }
+  var textElement = document.getElementById(messageId);
+  textElement.innerHTML = marked.parse(textElement.innerHTML);
 }

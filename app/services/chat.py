@@ -33,4 +33,4 @@ async def aanswer(request: Request, user: LoggedInUser):
         if (msg.content and msg.id.startswith("run-")
                 and not isinstance(msg, HumanMessage)
                 and (metadata["langgraph_node"] == GENERATE or metadata["langgraph_node"] == REVIEW)):
-            yield msg.content
+            yield msg.content.replace('\n', '<br>')
