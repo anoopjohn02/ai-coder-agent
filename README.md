@@ -28,6 +28,7 @@ Once you have run the application go to [http://localhost:8080/ui](http://localh
 | OPEN_AI_MODEL      | gpt-4o, gpt-4o-mini                                                | 
 | CODER_MODEL_NAME   | deepseek-coder-v2                                                  |
 | DEFAULT_MODEL_NAME | llama3.2                                                           |
+| STATIC_FILE_PATH   | path/to/root/folder                                                |
 
 ## How do I set up locally? ##
 
